@@ -24,3 +24,13 @@ app.post('/todos', (req, res) => {
 app.listen(3000, () => {
   console.log('Started on 3000 port');
 });
+
+app.get('/todos', (req, res) => {
+  Todo.find().then((todos) => {
+    res.send({todos})
+  }, (e) => {
+    res.status(400).send(e);
+  });
+});
+
+module.exports = {app};
